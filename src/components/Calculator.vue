@@ -10,7 +10,7 @@
             class="form-control col-sm-1"
             v-model.lazy.number="regularAleCost"
             id="regularAleCost"
-          />
+          />c
         </div>
         <div class="form-group row justify-content-center">
           <label class="col-form-label" for="premiumAleCost"
@@ -57,30 +57,30 @@
         <thead>
           <tr>
             <th></th>
-            <th></th>
+            <th>Amount</th>
             <th>Income</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Number of Patrons</td>
+            <td>Patrons</td>
             <td>{{ numberOfPatrons }}</td>
             <td>--</td>
           </tr>
           <tr>
-            <td>Number of Regular Ales</td>
+            <td>Regular Ales</td>
             <td>{{ numberOfRegularAles }}</td>
-            <td>{{ regularAleIncome }}</td>
+            <td>{{ regularAleIncome }} copper</td>
           </tr>
           <tr>
-            <td>Number of Premium Ales</td>
+            <td>Premium Ales</td>
             <td>{{ numberOfPremiumAles }}</td>
-            <td>{{ premiumAleIncome }}</td>
+            <td>{{ premiumAleIncome }} copper</td>
           </tr>
           <tr>
             <td>Total</td>
             <td>{{ totalAles }}</td>
-            <td>{{ getTotalIncome }}</td>
+            <td>{{ getTotalIncome }} copper</td>
           </tr>
         </tbody>
       </table>
