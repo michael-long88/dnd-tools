@@ -13,18 +13,6 @@ export default {
   name: "App",
   components: {
     Calculator
-  },
-  data() {
-    return {
-      regularAleCost: 4,
-      premiumAleCost: 6,
-      dc: 10
-    };
-  },
-  methods: {
-    roll1d20: function f() {
-      return Math.floor(Math.random() * 20) + 1;
-    }
   }
 };
 </script>
