@@ -2,53 +2,81 @@
   <div id="tavern-calculator">
     <div class="container">
       <form @submit.prevent="calculateChanceOfSuccess">
-        <div class="form-group row justify-content-center">
-          <label class="col-form-label" for="regularAleCost"
-            >Regular Ale Cost:
-          </label>
-          <input
-            class="form-control col-sm-1"
-            v-model.lazy.number="regularAleCost"
-            id="regularAleCost"
-          />c
+        <div class="form-group row">
+          <div class="col-md-2 offset-md-4">
+            <label class="col-form-label" for="regularAleCost">
+              Regular Ale Cost:
+            </label>
+          </div>
+          <div class="col-md-2">
+            <input
+              class="form-control"
+              v-model.lazy.number="regularAleCost"
+              id="regularAleCost"
+            />
+          </div>
         </div>
-        <div class="form-group row justify-content-center">
-          <label class="col-form-label" for="premiumAleCost"
-            >Premium Ale Cost:
-          </label>
-          <input
-            class="form-control col-sm-1"
-            v-model.lazy.number="premiumAleCost"
-            id="premiumAleCost"
-          />
+        <div class="form-group row">
+          <div class="col-md-2 offset-md-4">
+            <label class="col-form-label" for="premiumAleCost">
+              Premium Ale Cost:
+            </label>
+          </div>
+          <div class="col-md-2">
+            <input
+              class="form-control"
+              v-model.lazy.number="premiumAleCost"
+              id="premiumAleCost"
+            />
+          </div>
         </div>
-        <div class="form-group row justify-content-center">
-          <label class="col-form-label" for="dc">DC: </label>
-          <input
-            class="form-control col-sm-1"
-            v-model.lazy.number="dc"
-            id="dc"
-          />
+        <div class="form-group row">
+          <div class="col-md-2 offset-md-4">
+            <label class="col-form-label" for="dc">
+              DC:
+            </label>
+          </div>
+          <div class="col-md-2">
+            <input
+              class="form-control"
+              v-model.lazy.number="dc"
+              id="dc"
+            />
+          </div>
         </div>
-        <div class="form-group row justify-content-center">
-          <label class="col-form-label" for="dc">1d20 Roll: </label>
-          <input
-            class="form-control col-sm-1"
-            v-model="roll1d20"
-            disabled
-            id="roll1d20"
-          />
+        <div class="form-group row">
+          <div class="col-md-2 offset-md-4">
+            <label class="col-form-label" for="dc">
+              1d20 Roll:
+            </label>
+          </div>
+          <div class="col-md-2">
+            <input
+              class="form-control"
+              v-model="roll1d20"
+              disabled
+              id="roll1d20"
+            />
+          </div>
         </div>
-        <div class="form-group row justify-content-center">
-          <label class="col-form-label" for="dc">Chance of Success: </label>
-          <input
-            class="form-control col-sm-1"
-            v-model="chanceOfSuccess"
-            disabled
-            id="chanceOfSuccess"
-          />
+        <div class="form-group row">
+          <div class="col-md-2 offset-md-4">
+            <label class="col-form-label" for="dc">
+              Chance of Success:
+            </label>
+          </div>
+          <div class="col-md-2">
+            <input
+              class="form-control"
+              v-model="chanceOfSuccess"
+              disabled
+              id="chanceOfSuccess"
+            />
+          </div>
         </div>
-        <button class="btn btn-primary" type="submit">Calculate</button>
+        <button class="btn btn-primary" type="submit">
+          Calculate Chance of Success
+        </button>
       </form>
     </div>
     <br>
@@ -98,11 +126,6 @@
 <script>
 export default {
   name: "Calculator",
-  // props: {
-  //   regularAleCost: Number,
-  //   premiumAleCost: Number,
-  //   dc: Number
-  // },
   data() {
     return {
       regularAleCost: 4,
