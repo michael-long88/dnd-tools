@@ -1,19 +1,24 @@
 <template>
   <div id="app">
-    <img alt="Dungeons and Dragons logo" src="./assets/dnd_icon.png" height="300" width="600"/>
+    <img
+      alt="Dungeons and Dragons logo"
+      src="./assets/dnd_icon.png"
+      height="300"
+      width="600"
+    />
     <Calculator />
   </div>
 </template>
 
 <script>
-import Calculator from "./components/Calculator";
+import Calculator from './components/Calculator'
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Calculator
   }
-};
+}
 </script>
 
 <style>

@@ -1,12 +1,31 @@
 <template>
   <div id="tavern-calculator">
     <div class="container">
+      <h4>Instructions:</h4>
+      <div class="text-left">
+        <ol>
+          <li>
+            Fill out the premium and regular ale cost, as well as the DC check
+          </li>
+          <li>
+            Click the "Get Today's Patrons" button (the results are based on the
+            "Chance of Success" calculated in the top form)
+          </li>
+        </ol>
+      </div>
+    </div>
+    <div class="container">
       <form @submit.prevent="calculateChanceOfSuccess">
         <div class="form-group row">
           <div class="col-md-2 offset-md-4">
-            <label class="col-form-label" for="regularAleCost">
-              Regular Ale Cost:
-            </label>
+            <div>
+              <Tooltip
+                :tooltipText="'Cost of a normal ale in your tavern'"
+              />&nbsp;
+              <label class="col-form-label" for="regularAleCost">
+                Regular Ale Cost:
+              </label>
+            </div>
           </div>
           <div class="col-md-2">
             <input
@@ -18,9 +37,14 @@
         </div>
         <div class="form-group row">
           <div class="col-md-2 offset-md-4">
-            <label class="col-form-label" for="premiumAleCost">
-              Premium Ale Cost:
-            </label>
+            <div>
+              <Tooltip
+                :tooltipText="'Cost of a premium ale in your tavern'"
+              />&nbsp;
+              <label class="col-form-label" for="premiumAleCost">
+                Premium Ale Cost:
+              </label>
+            </div>
           </div>
           <div class="col-md-2">
             <input
@@ -32,16 +56,17 @@
         </div>
         <div class="form-group row">
           <div class="col-md-2 offset-md-4">
-            <label class="col-form-label" for="dc">
-              DC:
-            </label>
+            <div>
+              <Tooltip
+                :tooltipText="'DC check to pass in order to sell a premium ale'"
+              />&nbsp;
+              <label class="col-form-label" for="dc">
+                DC:
+              </label>
+            </div>
           </div>
           <div class="col-md-2">
-            <input
-              class="form-control"
-              v-model.lazy.number="dc"
-              id="dc"
-            />
+            <input class="form-control" v-model.lazy.number="dc" id="dc" />
           </div>
         </div>
         <div class="form-group row">
@@ -79,7 +104,7 @@
         </button>
       </form>
     </div>
-    <br>
+    <br />
     <div class="container">
       <table class="table table-bordered">
         <thead>
@@ -124,8 +149,12 @@
 </template>
 
 <script>
+import Tooltip from './Tooltip'
 export default {
-  name: "Calculator",
+  name: 'Calculator',
+  components: {
+    Tooltip
+  },
   data() {
     return {
       regularAleCost: 4,
@@ -138,70 +167,70 @@ export default {
       numberOfPremiumAles: 0,
       totalAles: 0,
       regularAleIncome: 0,
-      premiumAleIncome: 0,
-    };
+      premiumAleIncome: 0
+    }
   },
   computed: {
     getTotalIncome: function() {
-      return this.regularAleIncome + this.premiumAleIncome;
+      return this.regularAleIncome + this.premiumAleIncome
     }
   },
   methods: {
     calculateChanceOfSuccess: function() {
-      this.roll1d20 = Math.floor(Math.random() * 20) + 1;
+      this.roll1d20 = Math.floor(Math.random() * 20) + 1
       if (this.roll1d20 < this.dc) {
-        this.chanceOfSuccess = 0;
+        this.chanceOfSuccess = 0
       } else {
         this.chanceOfSuccess =
           this.roll1d20 +
-          (100 - this.dc * (this.premiumAleCost - this.regularAleCost));
+          (100 - this.dc * (this.premiumAleCost - this.regularAleCost))
         if (this.chanceOfSuccess > 100) {
-          this.chanceOfSuccess = 100;
+          this.chanceOfSuccess = 100
         }
       }
     },
     getDailyPatrons: function() {
-      this.getNumberOfPatrons();
-      this.getTotalNumberOflAles();
-      this.getNumberOfPremiumAles();
-      this.getNumberOfRegularAles();
-      this.getRegularAleIncome();
-      this.getPremiumAleIncome();
+      this.getNumberOfPatrons()
+      this.getTotalNumberOflAles()
+      this.getNumberOfPremiumAles()
+      this.getNumberOfRegularAles()
+      this.getRegularAleIncome()
+      this.getPremiumAleIncome()
     },
     getNumberOfPatrons: function() {
-      this.numberOfPatrons = Math.floor(Math.random() * 4) + 1;
+      this.numberOfPatrons = Math.floor(Math.random() * 4) + 1
     },
     getTotalNumberOflAles: function() {
-      let totalAles = 0;
+      let totalAles = 0
       for (let i = 0; i < this.numberOfPatrons; i++) {
-        let random1d4 = Math.floor(Math.random() * 4) + 1;
-        totalAles += random1d4;
+        let random1d4 = Math.floor(Math.random() * 4) + 1
+        totalAles += random1d4
       }
-      this.totalAles = totalAles;
+      this.totalAles = totalAles
     },
     getNumberOfPremiumAles: function() {
-      let premiumAles = 0;
+      let premiumAles = 0
       if (this.chanceOfSuccess !== 0) {
         for (let i = 0; i < this.totalAles; i++) {
-          let random1d100 = Math.floor(Math.random() * 100) + 1;
+          let random1d100 = Math.floor(Math.random() * 100) + 1
           if (random1d100 <= this.chanceOfSuccess) {
-            premiumAles++;
+            premiumAles++
           }
         }
       }
-      this.numberOfPremiumAles = premiumAles;
+      this.numberOfPremiumAles = premiumAles
     },
     getNumberOfRegularAles: function() {
-      this.numberOfRegularAles = this.totalAles - this.numberOfPremiumAles;
+      this.numberOfRegularAles = this.totalAles - this.numberOfPremiumAles
     },
     getRegularAleIncome: function() {
-      this.regularAleIncome = this.numberOfRegularAles * this.regularAleCost;
+      this.regularAleIncome = this.numberOfRegularAles * this.regularAleCost
     },
     getPremiumAleIncome: function() {
-      this.premiumAleIncome = this.numberOfPremiumAles * this.premiumAleCost;
+      this.premiumAleIncome = this.numberOfPremiumAles * this.premiumAleCost
     }
   }
-};
+}
 </script>
 
 <style scoped></style>
