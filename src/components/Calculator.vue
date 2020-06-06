@@ -1,19 +1,11 @@
 <template>
   <div id="tavern-calculator">
     <div class="container">
+      <button class="btn btn-primary" @click="changeCalculationType()">{{ calculationType }}</button>
       <h4>Instructions:</h4>
       <div class="text-left">
         <ol>
-          <li>
-            Fill out the premium and regular ale cost, as well as the DC check
-          </li>
-          <li>
-            Enter the number of days to calculate
-          </li>
-          <li>
-            Click the "Get Patrons for n day(s)" button (the results are based
-            on the "Chance of Success" calculated in the top form)
-          </li>
+          <li v-for="(step, index) in instructions[calculationType]" :key="index">{{ step }}</li>
         </ol>
       </div>
     </div>
@@ -22,89 +14,55 @@
         <div class="form-group row">
           <div class="col-md-2 offset-md-4">
             <div>
-              <Tooltip
-                :tooltipText="'Cost of a normal ale in your tavern'"
-              />&nbsp;
-              <label class="col-form-label" for="regularAleCost">
-                Regular Ale Cost:
-              </label>
+              <Tooltip :tooltipText="'Cost of a normal ale in your tavern'" />&nbsp;
+              <label class="col-form-label" for="regularAleCost">Regular Ale Cost:</label>
             </div>
           </div>
           <div class="col-md-2">
-            <input
-              class="form-control"
-              v-model.lazy.number="regularAleCost"
-              id="regularAleCost"
-            />
+            <input class="form-control" v-model.lazy.number="regularAleCost" id="regularAleCost" />
           </div>
         </div>
         <div class="form-group row">
           <div class="col-md-2 offset-md-4">
             <div>
-              <Tooltip
-                :tooltipText="'Cost of a premium ale in your tavern'"
-              />&nbsp;
-              <label class="col-form-label" for="premiumAleCost">
-                Premium Ale Cost:
-              </label>
+              <Tooltip :tooltipText="'Cost of a premium ale in your tavern'" />&nbsp;
+              <label class="col-form-label" for="premiumAleCost">Premium Ale Cost:</label>
             </div>
           </div>
           <div class="col-md-2">
-            <input
-              class="form-control"
-              v-model.lazy.number="premiumAleCost"
-              id="premiumAleCost"
-            />
+            <input class="form-control" v-model.lazy.number="premiumAleCost" id="premiumAleCost" />
           </div>
         </div>
         <div class="form-group row">
           <div class="col-md-2 offset-md-4">
             <div>
-              <Tooltip
-                :tooltipText="'DC check to pass in order to sell a premium ale'"
-              />&nbsp;
-              <label class="col-form-label" for="dc">
-                DC:
-              </label>
+              <Tooltip :tooltipText="'DC check to pass in order to sell a premium ale'" />&nbsp;
+              <label class="col-form-label" for="dc">DC:</label>
             </div>
           </div>
           <div class="col-md-2">
             <input class="form-control" v-model.lazy.number="dc" id="dc" />
           </div>
         </div>
-        <div class="form-group row">
-          <div class="col-md-2 offset-md-4">
-            <label class="col-form-label" for="dc">
-              1d20 Roll:
-            </label>
+        <div v-if="calculationType === 'Single Day'">
+          <div class="form-group row">
+            <div class="col-md-2 offset-md-4">
+              <label class="col-form-label" for="dc">1d20 Roll:</label>
+            </div>
+            <div class="col-md-2">
+              <input class="form-control" v-model="roll1d20" disabled id="roll1d20" />
+            </div>
           </div>
-          <div class="col-md-2">
-            <input
-              class="form-control"
-              v-model="roll1d20"
-              disabled
-              id="roll1d20"
-            />
+          <div class="form-group row">
+            <div class="col-md-2 offset-md-4">
+              <label class="col-form-label" for="dc">Chance of Success:</label>
+            </div>
+            <div class="col-md-2">
+              <input class="form-control" v-model="chanceOfSuccess" disabled id="chanceOfSuccess" />
+            </div>
           </div>
+          <button class="btn btn-primary" type="submit">Calculate Chance of Success</button>
         </div>
-        <div class="form-group row">
-          <div class="col-md-2 offset-md-4">
-            <label class="col-form-label" for="dc">
-              Chance of Success:
-            </label>
-          </div>
-          <div class="col-md-2">
-            <input
-              class="form-control"
-              v-model="chanceOfSuccess"
-              disabled
-              id="chanceOfSuccess"
-            />
-          </div>
-        </div>
-        <button class="btn btn-primary" type="submit">
-          Calculate Chance of Success
-        </button>
       </form>
     </div>
     <br />
@@ -140,36 +98,42 @@
           </tr>
         </tbody>
       </table>
-      <div class="form-group row">
-        <div class="col-md-2 offset-md-4">
-          <label for="numDays">Number of days (between 1 and 30):</label>
+      <div v-if="calculationType === 'Multiple Days'">
+        <div class="form-group row">
+          <div class="col-md-2 offset-md-4">
+            <label for="numDays">Number of days (between 1 and 30):</label>
+          </div>
+          <div class="col-md-2">
+            <input
+              type="number"
+              class="form-control"
+              v-model.lazy.number="numberOfDays"
+              id="numDays"
+              name="numDays"
+              min="1"
+              max="30"
+            />
+          </div>
         </div>
-        <div class="col-md-2">
-          <input
-            type="number"
-            class="form-control"
-            v-model.lazy.number="numberOfDays"
-            id="numDays"
-            name="numDays"
-            min="1"
-            max="30"
-          />
-        </div>
+        <button
+          class="btn btn-primary"
+          type="button"
+          :disabled="numberOfDays < 1 || numberOfDays > 30"
+          v-on:click.prevent="getDailyPatrons"
+        >
+          Get Patrons for {{ numberOfDays }} day(s)
+        </button>
       </div>
-      <button
-        class="btn btn-primary"
-        type="button"
-        :disabled="numberOfDays < 1 || numberOfDays > 30"
-        v-on:click.prevent="getDailyPatrons"
-      >
-        Get Patrons for {{ numberOfDays }} day(s)
-      </button>
+      <div v-else>
+        <button class="btn btn-primary" type="button" v-on:click.prevent="getDailyPatrons">Get Patrons</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import Tooltip from './Tooltip'
+import instructions from '@/instructions'
 export default {
   name: 'Calculator',
   components: {
@@ -177,6 +141,8 @@ export default {
   },
   data() {
     return {
+      calculationType: 'Single Day',
+      instructions: instructions,
       regularAleCost: 4,
       premiumAleCost: 6,
       dc: 10,
@@ -188,7 +154,8 @@ export default {
       totalAles: 0,
       regularAleIncome: 0,
       premiumAleIncome: 0,
-      numberOfDays: 1
+      numberOfDays: 1,
+      multiDaySuccessChancess: []
     }
   },
   computed: {
@@ -197,40 +164,65 @@ export default {
     }
   },
   methods: {
+    changeCalculationType() {
+      if (this.calculationType === 'Single Day') {
+        this.calculationType = 'Multiple Days'
+      } else {
+        this.calculationType = 'Single Day'
+      }
+    },
     calculateChanceOfSuccess() {
       this.roll1d20 = Math.floor(Math.random() * 20) + 1
       if (this.roll1d20 < this.dc) {
         this.chanceOfSuccess = 0
       } else {
-        this.chanceOfSuccess =
-          this.roll1d20 +
-          (100 - this.dc * (this.premiumAleCost - this.regularAleCost))
+        this.chanceOfSuccess = this.roll1d20 + (100 - this.dc * (this.premiumAleCost - this.regularAleCost))
         if (this.chanceOfSuccess > 100) {
           this.chanceOfSuccess = 100
         }
       }
     },
     getDailyPatrons() {
-      this.getNumberOfPatrons()
-      this.getTotalNumberOflAles()
-      this.getNumberOfPremiumAles()
+      if (this.calculationType === 'Multiple Days'){
+        let numberOfPatrons = 0
+        let totalNumberOfAles = 0
+        let numberOfPremiumAles = 0
+        for (let i = 0; i < this.numberOfDays; i++) {
+          this.calculateChanceOfSuccess()
+          this.getNumberOfPatrons()
+          this.getTotalNumberOflAles()
+          this.getNumberOfPremiumAles()
+          numberOfPatrons += this.numberOfPatrons
+          totalNumberOfAles += this.totalAles
+          numberOfPremiumAles += this.numberOfPremiumAles
+          console.log('this.numberOfPatrons: ', this.numberOfPatrons)
+          console.log('this.totalAles: ', this.totalAles)
+          console.log('this.numberOfPremiumAles: ', this.numberOfPremiumAles)
+          console.log('numberOfPatrons: ', numberOfPatrons)
+          console.log('totalNumberOfAles: ', totalNumberOfAles)
+          console.log('numberOfPremiumAles: ', numberOfPremiumAles)
+        }
+        this.numberOfPatrons = numberOfPatrons
+        this.totalAles = totalNumberOfAles
+        this.numberOfPremiumAles = numberOfPremiumAles
+      } else {
+        this.getNumberOfPatrons()
+        this.getTotalNumberOflAles()
+        this.getNumberOfPremiumAles()
+      }
       this.getNumberOfRegularAles()
       this.getRegularAleIncome()
       this.getPremiumAleIncome()
     },
     getNumberOfPatrons() {
       let numberOfPatrons = 0
-      for (let i = 0; i < this.numberOfDays; i++) {
-        numberOfPatrons += Math.floor(Math.random() * 4) + 1
-      }
+      numberOfPatrons += Math.floor(Math.random() * 4) + 1
       this.numberOfPatrons = numberOfPatrons
     },
     getTotalNumberOflAles() {
       let totalAles = 0
-      for (let n = 0; n < this.numberOfDays; n++) {
-        for (let i = 0; i < this.numberOfPatrons; i++) {
-          totalAles += Math.floor(Math.random() * 4) + 1
-        }
+      for (let i = 0; i < this.numberOfPatrons; i++) {
+        totalAles += Math.floor(Math.random() * 4) + 1
       }
       this.totalAles = totalAles
     },
