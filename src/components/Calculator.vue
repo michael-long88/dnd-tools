@@ -195,12 +195,6 @@ export default {
           numberOfPatrons += this.numberOfPatrons
           totalNumberOfAles += this.totalAles
           numberOfPremiumAles += this.numberOfPremiumAles
-          console.log('this.numberOfPatrons: ', this.numberOfPatrons)
-          console.log('this.totalAles: ', this.totalAles)
-          console.log('this.numberOfPremiumAles: ', this.numberOfPremiumAles)
-          console.log('numberOfPatrons: ', numberOfPatrons)
-          console.log('totalNumberOfAles: ', totalNumberOfAles)
-          console.log('numberOfPremiumAles: ', numberOfPremiumAles)
         }
         this.numberOfPatrons = numberOfPatrons
         this.totalAles = totalNumberOfAles
