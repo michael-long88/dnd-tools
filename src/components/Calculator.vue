@@ -173,12 +173,11 @@ export default {
     },
     calculateChanceOfSuccess() {
       this.roll1d20 = Math.floor(Math.random() * 20) + 1
-      if (this.roll1d20 < this.dc) {
-        this.chanceOfSuccess = 0
-      } else {
-        this.chanceOfSuccess = this.roll1d20 + (100 - this.dc * (this.premiumAleCost - this.regularAleCost))
-        if (this.chanceOfSuccess > 100) {
-          this.chanceOfSuccess = 100
+      let chanceOfSuccess = 0
+      if (this.roll1d20 >= this.dc) {
+        chanceOfSuccess = this.roll1d20 + (100 - this.dc * (this.premiumAleCost - this.regularAleCost))
+        if (chanceOfSuccess > 100) {
+          chanceOfSuccess = 100
         }
       }
     },
