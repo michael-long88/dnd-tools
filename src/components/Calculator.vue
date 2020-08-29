@@ -1,11 +1,18 @@
 <template>
   <div id="tavern-calculator">
     <div class="container">
-      <button class="btn btn-primary" @click="changeCalculationType()">{{ calculationType }}</button>
+      <button class="btn btn-primary" @click="changeCalculationType()">
+        {{ calculationType }}
+      </button>
       <h4>Instructions:</h4>
       <div class="text-left">
         <ol>
-          <li v-for="(step, index) in instructions[calculationType]" :key="index">{{ step }}</li>
+          <li
+            v-for="(step, index) in instructions[calculationType]"
+            :key="index"
+          >
+            {{ step }}
+          </li>
         </ol>
       </div>
     </div>
@@ -19,7 +26,11 @@
             </div>
           </div>
           <div class="col-md-2">
-            <input class="form-control" v-model.lazy.number="regularAleCost" id="regularAleCost" />
+            <input
+              class="form-control"
+              v-model.lazy.number="regularAleCost"
+              id="regularAleCost"
+            />
           </div>
         </div>
         <div class="form-group row">
@@ -30,7 +41,11 @@
             </div>
           </div>
           <div class="col-md-2">
-            <input class="form-control" v-model.lazy.number="premiumAleCost" id="premiumAleCost" />
+            <input
+              class="form-control"
+              v-model.lazy.number="premiumAleCost"
+              id="premiumAleCost"
+            />
           </div>
         </div>
         <div class="form-group row">
@@ -41,7 +56,11 @@
             </div>
           </div>
           <div class="col-md-2">
-            <input class="form-control" v-model.lazy.number="dc" id="dc" />
+            <input
+              class="form-control"
+              v-model.lazy.number="dc"
+              id="dc"
+            />
           </div>
         </div>
         <div v-if="calculationType === 'Single Day'">
@@ -50,7 +69,12 @@
               <label class="col-form-label" for="dc">1d20 Roll:</label>
             </div>
             <div class="col-md-2">
-              <input class="form-control" v-model="roll1d20" disabled id="roll1d20" />
+              <input
+                class="form-control"
+                v-model="roll1d20"
+                disabled
+                id="roll1d20"
+              />
             </div>
           </div>
           <div class="form-group row">
@@ -58,10 +82,17 @@
               <label class="col-form-label" for="dc">Chance of Success:</label>
             </div>
             <div class="col-md-2">
-              <input class="form-control" v-model="chanceOfSuccess" disabled id="chanceOfSuccess" />
+              <input
+                class="form-control"
+                v-model="chanceOfSuccess"
+                disabled
+                id="chanceOfSuccess"
+              />
             </div>
           </div>
-          <button class="btn btn-primary" type="submit">Calculate Chance of Success</button>
+          <button class="btn btn-primary" type="submit">
+            Calculate Chance of Success
+          </button>
         </div>
       </form>
     </div>
@@ -119,13 +150,19 @@
           class="btn btn-primary"
           type="button"
           :disabled="numberOfDays < 1 || numberOfDays > 30"
-          v-on:click.prevent="getDailyPatrons"
+          @click.prevent="getDailyPatrons"
         >
           Get Patrons for {{ numberOfDays }} day(s)
         </button>
       </div>
       <div v-else>
-        <button class="btn btn-primary" type="button" v-on:click.prevent="getDailyPatrons">Get Patrons</button>
+        <button
+          class="btn btn-primary"
+          type="button"
+          @click.prevent="getDailyPatrons"
+        >
+          Get Patrons
+        </button>
       </div>
     </div>
   </div>
@@ -173,16 +210,16 @@ export default {
     },
     calculateChanceOfSuccess() {
       this.roll1d20 = Math.floor(Math.random() * 20) + 1
-      let chanceOfSuccess = 0
+      this.chanceOfSuccess = 0
       if (this.roll1d20 >= this.dc) {
-        chanceOfSuccess = this.roll1d20 + (100 - this.dc * (this.premiumAleCost - this.regularAleCost))
-        if (chanceOfSuccess > 100) {
-          chanceOfSuccess = 100
+        this.chanceOfSuccess = this.roll1d20 + (100 - this.dc * (this.premiumAleCost - this.regularAleCost))
+        if (this.chanceOfSuccess > 100) {
+          this.chanceOfSuccess = 100
         }
       }
     },
     getDailyPatrons() {
-      if (this.calculationType === 'Multiple Days'){
+      if (this.calculationType === 'Multiple Days') {
         let numberOfPatrons = 0
         let totalNumberOfAles = 0
         let numberOfPremiumAles = 0

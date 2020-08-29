@@ -1,5 +1,9 @@
 <template>
-  <span data-toggle="tooltip" :data-placement="placement" :title="tooltipText">
+  <span
+    data-toggle="tooltip"
+    :data-placement="placement"
+    :title="tooltipText"
+  >
     <font-awesome-icon :icon="['fas', 'question-circle']" />
   </span>
 </template>

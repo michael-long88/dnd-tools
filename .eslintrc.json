@@ -1,0 +1,68 @@
+{
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "extends": [
+        "plugin:vue/strongly-recommended"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "vue"
+    ],
+    "rules": {
+        "indent": [
+            "warn",
+            2
+        ],
+        "linebreak-style": [
+            "warn",
+            "unix"
+        ],
+        "quotes": [
+            "warn",
+            "single"
+        ],
+        "semi": [
+            "warn",
+            "never"
+        ],
+        "no-trailing-spaces": [
+            "warn",
+            {
+                "skipBlankLines": false,
+                "ignoreComments": false
+            }
+        ],
+        "vue/html-self-closing": [
+            "warn",
+            {
+                "html": {
+                    "normal": "never",
+                    "void": "always"
+                }
+            }
+        ],
+        "vue/max-attributes-per-line": [
+            "warn",
+            {
+                "singleline": 2,
+                "multiline": {
+                    "max": 1,
+                    "allowFirstLine": false
+                }
+            }
+        ],
+        "vue/attribute-hyphenation": [
+            "warn",
+            "never"
+        ]
+    }
+}
