@@ -1,0 +1,29 @@
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+.converter-div, #tavern-calculator {
+  margin-top: 1em;
+}
+.converter-submit {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.results-holder {
+  padding-top: 1em;
+  margin-bottom: 1em;
+  background-color: #d1ecf1;
+  padding-left: 0;
+
+  span {
+    ul {
+      text-align: center;
+      list-style-position: inside;
+    }
+  }
+}
