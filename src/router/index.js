@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Calculator from '../components/Calculator'
 import Converter from '../components/Converter'
+import References from '../pages/References'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/currency-converter',
     name: 'Converter',
     component: Converter,
+  },
+  {
+    path: '/references',
+    name: 'References',
+    component: References
   }
 ]
 
