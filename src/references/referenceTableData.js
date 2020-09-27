@@ -96,4 +96,68 @@ let crafting = {
   ]
 }
 
-export { lodging, crafting }
+let inn = {
+  title: 'Inn Prices',
+  itemHeader: 'Lifestyle',
+  priceHeader: 'Price/Day',
+  items: [
+    {
+      item: 'Squalid',
+      price: '7 cp',
+    },
+    {
+      item: 'Poor',
+      price: '1 sp'
+    },
+    {
+      item: 'Modest',
+      price: '5 sp'
+    },
+    {
+      item: 'Comfortable',
+      price: '8 sp'
+    },
+    {
+      item: 'Weallhy',
+      price: '2 gp'
+    },
+    {
+      item: 'Aristocratic',
+      price: '4 gp'
+    }
+  ]
+}
+
+let meals = {
+  title: 'Meal Prices',
+  itemHeader: 'Lifestyle',
+  priceHeader: 'Price/Day',
+  items: [
+    {
+      item: 'Squalid',
+      price: '3 cp',
+    },
+    {
+      item: 'Poor',
+      price: '6 cp'
+    },
+    {
+      item: 'Modest',
+      price: '3 sp'
+    },
+    {
+      item: 'Comfortable',
+      price: '5 sp'
+    },
+    {
+      item: 'Weallhy',
+      price: '8 sp'
+    },
+    {
+      item: 'Aristocratic',
+      price: '2 gp'
+    }
+  ]
+}
+
+export { lodging, crafting, inn, meals }

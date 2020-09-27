@@ -8,6 +8,12 @@
         <li class="nav-item">
           <span :class="['nav-link', { 'active' : selectedReference === 'crafting'}]" @click="updateSelectedReference('crafting')">Crafting</span>
         </li>
+        <li class="nav-item">
+          <span :class="['nav-link', { 'active' : selectedReference === 'inn'}]" @click="updateSelectedReference('inn')">Inn</span>
+        </li>
+        <li class="nav-item">
+          <span :class="['nav-link', { 'active' : selectedReference === 'meals'}]" @click="updateSelectedReference('meals')">Meals</span>
+        </li>
       </ul>
     </div>
     <div class="container resource-div" v-if="selectedReference === 'lodging'">
@@ -16,12 +22,18 @@
     <div class="container resource-div" v-if="selectedReference === 'crafting'">
       <ExpensesTable :resource="craftingResource" />
     </div>
+    <div class="container resource-div" v-if="selectedReference === 'inn'">
+      <ExpensesTable :resource="innResource" />
+    </div>
+    <div class="container resource-div" v-if="selectedReference === 'meals'">
+      <ExpensesTable :resource="mealResource" />
+    </div>
   </div>
 </template>
 
 <script>
 import ExpensesTable from '../components/ExpensesTable'
-import { lodging, crafting } from '../references/referenceTableData'
+import { lodging, crafting, inn, meals } from '../references/referenceTableData'
 export default {
   name: 'ReferencesPage',
   components: {
@@ -38,6 +50,12 @@ export default {
     },
     craftingResource() {
       return crafting
+    },
+    innResource() {
+      return inn
+    },
+    mealResource() {
+      return meals
     }
   },
   methods: {

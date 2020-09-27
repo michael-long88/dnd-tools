@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>{{ tableTitle }}  <small><Tooltip tooltipText="Click an item for a description" /></small></h3>
+    <h3>{{ tableTitle }}  <small><Tooltip v-if="descriptionExists" tooltipText="Click an item for a description" /></small></h3>
     <table class="table table-striped">
       <thead>
         <th>{{ itemColumnHeader }}</th>
@@ -12,10 +12,14 @@
       <tbody>
         <tr v-for="(item, index) in resourceItems" :key="index">
           <td
+            v-if="descriptionExists"
             data-toggle="modal"
             data-target="#explanationModal"
             @click="setModalOptions(item.item, item.description)"
           >
+            {{ item.item }}
+          </td>
+          <td v-else>
             {{ item.item }}
           </td>
           <td v-if="item.grade">
@@ -70,6 +74,9 @@ export default {
     },
     resourceItems() {
       return this.resourceObj.items
+    },
+    descriptionExists() {
+      return this.resourceObj.items[0].description
     }
   },
   methods: {
