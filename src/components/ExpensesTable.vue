@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>{{ tableTitle }}  <small><Tooltip v-if="descriptionExists" tooltipText="Click an item for a description" /></small></h3>
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered">
       <thead>
         <th>{{ itemColumnHeader }}</th>
         <th v-if="gradeColumnHeader">

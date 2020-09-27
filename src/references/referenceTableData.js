@@ -160,4 +160,182 @@ let meals = {
   ]
 }
 
-export { lodging, crafting, inn, meals }
+let spellAttackFumble = {
+  title: 'Spell Attack Fumble Table',
+  rollHeader: 'Roll',
+  descriptionHeader: 'Description',
+  effectHeader: 'Effect',
+  items: [
+    {
+      roll: '1',
+      description: 'You are embarrassed by your poor showing, but nothing remarkable happens.',
+      effect: 'You miss your attack.'
+    },
+    {
+      roll: '2-5',
+      description: 'You get wrapped up in your spellcasting and forget to watch your target.',
+      effect: 'Your target has advantage on their first attack roll against you next round.'
+    },
+    {
+      roll: '6-9',
+      description: 'You get wrapped up in your spellcasting and forget to watch your surroundings.',
+      effect: 'All enemies have advantage on their first attack roll against you next round.'
+    },
+    {
+      roll: '10-14',
+      description: 'You are so wrapped up in your spellcasting that you forget you are fighting a battle.',
+      effect: 'All enemies have advantage on their attack rolls against you until the end of your next turn.'
+    },
+    {
+      roll: '15-19',
+      description: 'Your spell creates a large plume of smoke obscuring your location.',
+      effect: 'The area in a 5 foot radius around your location becomes heavily obscured for 1 minute. A strong breeze can blow away the smoke in 1 round.'
+    },
+    {
+      roll: '20-29',
+      description: 'Your spell misfires knocking you over.',
+      effect: 'You are knocked prone.'
+    },
+    {
+      roll: '30-39',
+      description: 'The spell fires in an unexpected manner, causing your confidence in your abilities to falter.',
+      effect: 'You have disadvantage on any spell attacks, and enemies have advantage against your spell savings throws until the end of your next turn.'
+    },
+    {
+      roll: '40-49',
+      description: 'The placement of your spell startles your allies near your target, causing them to drop their guard.',
+      effect: 'Your target is able to use their reaction to take an attack of opportunity on one of your allies in melee range.'
+    },
+    {
+      roll: '50-59',
+      description: 'You scramble the ingredients of your component pouch or your focus becomes overloaded with magical energy and temporarily stops working.',
+      effect: 'You are unable to perform material components to cast spells until the end of your next turn.'
+    },
+    {
+      roll: '60-69',
+      description: 'Your arm cramps as you cast.',
+      effect: 'You are unable to perform somatic components to cast spells until the end of your next turn.'
+    },
+    {
+      roll: '70-79',
+      description: 'You bite your tongue as you cast.',
+      effect: 'You are unable to use verbal components to cast spells until the end of your next turn.'
+    },
+    {
+      roll: '80-84',
+      description: 'Your spell misfires and dazes you, causing you to lose track of the fight.',
+      effect: 'End your turn and move to the bottom of the initiative order at the start of the next round.'
+    },
+    {
+      roll: '85-89',
+      description: 'Your spell misfires causing you to panic.',
+      effect: 'End your current turn and you are surprised until the end of your next turn'
+    },
+    {
+      roll: '90-94',
+      description: 'Your spell backfires creating a small explosion causing you to fall and bump your head.',
+      effect: 'You fall prone. Roll a DC 10 constitution save, on failure you take 1d6 bludgeoning damage and are knocked unconscious for 1 minute or until you receive damage from any source. On success take half damage and you remain conscious.'
+    },
+    {
+      roll: '95-99',
+      description: 'Your spell backfires creating a large explosion causing you to fall and bump your head.',
+      effect: 'You fall prone. Roll a DC 15 constitution save, on failure you take 1d6 bludgeoning damage, 1d6 thunder damage, and are knocked unconscious for 1 minute or until you receive damage from any source. On success take half damage and you remain conscious.'
+    },
+    {
+      roll: '100',
+      description: 'Your spell completely backfires creating a large explosion causing you to fall and bump your head.',
+      effect: 'You hit yourself with your spell. If the spell effect is instant you take the full effect. If the spell requires concentration the effect persists until the end of your next turn. You also fall prone, take 1d6 bludgeoning damage, 1d6 thunder damage, and become unconscious for 1 minute or until you receive damage from any source.'
+    }
+  ]
+}
+
+let weaponAttackFumble = {
+  title: 'Weapon Attack Fumble Table',
+  rollHeader: 'Roll',
+  descriptionHeader: 'Description',
+  effectHeader: 'Effect',
+  items: [
+    {
+      roll: '1',
+      description: 'You are embarrassed by your poor showing, but nothing remarkable happens.',
+      effect: 'You miss your attack.'
+    },
+    {
+      roll: '2-5',
+      description: 'You lose your combat footing, exposing yourself to your target.',
+      effect: 'Your target has advantage on their first attack roll against you next round.'
+    },
+    {
+      roll: '6-9',
+      description: 'You lose your combat footing, exposing yourself to your enemies.',
+      effect: 'All enemies have advantage on their first attack roll against you next round.'
+    },
+    {
+      roll: '10-14',
+      description: 'You lose your combat footing, and have difficulty recovering.',
+      effect: 'All enemies have advantage on their attack rolls against you until the end of your next turn.'
+    },
+    {
+      roll: '15-19',
+      description: '<b>Melee:</b> You get tangled with your enemy and fall over. <b>Ranged:</b> You spill your quiver.',
+      effect: '<b>Melee:</b> You are knocked prone and your movement is reduced to 0. Your target must succeed a DC 10 dexterity check or they are also knocked prone. <b>Ranged:</b> You must pick up arrows individually from the ground using your “environmental interaction”, or the “Use an Object” action to nock your bow.'
+    },
+    {
+      roll: '20-29',
+      description: 'You lose your balance while attacking.',
+      effect: 'You fall prone and your movement is reduced to 0.'
+    },
+    {
+      roll: '30-39',
+      description: 'As you attack your opponent you begin to fear that they are the superior combatant.',
+      effect: 'Disadvantage on your next attack roll against your target.'
+    },
+    {
+      roll: '40-49',
+      description: 'You miss an attack and gaze upon the chaos of the battle, causing your confidence to falter.',
+      effect: 'Disadvantage on your next attack roll against any target.'
+    },
+    {
+      roll: '50-59',
+      description: 'You lose your grip as you attack.',
+      effect: 'Roll a DC 10 Dexterity Check, on failure you drop your weapon at your feet.'
+    },
+    {
+      roll: '60-69',
+      description: '<b>Melee:</b> The weapon slips from your hand as you attack. <b>Ranged:</b> Your ammunition gets lodged in its container.',
+      effect: '<b>Melee:</b> Roll a DC 10 Dexterity Check, on failure you throw your weapon into your enemy’s space. DM determines where the item is thrown on large sized or greater creatures. <b>Ranged:</b> You must use an action to organize the ammunition in its case before you can make another ranged attack.'
+    },
+    {
+      roll: '70-79',
+      description: '<b>Melee:</b> You lunge past an enemy exposing yourself to his attack. <b>Ranged:</b> Your missile startles your allies near your target.',
+      effect: '<b>Melee:</b> Enemy you were attacking is able to use their reaction to perform an attack of opportunity. <b>Ranged:</b> the target can perform an opportunity attack on any ally within melee range.'
+    },
+    {
+      roll: '80-84',
+      description: 'Missing what you thought was a critical blow causes you to panic.',
+      effect: 'End your current turn and you are surprised until the end of your next turn.'
+    },
+    {
+      roll: '85-89',
+      description: 'You attack wildly and lose track of the fight around you.',
+      effect: 'End your turn and move to the bottom of the initiative order at the start of the next round.'
+    },
+    {
+      roll: '90-94',
+      description: 'You lose your footing while attacking and fall to the ground bumping your head.',
+      effect: 'You fall prone. Roll a DC 10 constitution save, on failure you take 1d6 bludgeoning damage and are knocked unconscious for 1 minute or until you receive damage from any source. On success take half damage and you remain conscious.'
+    },
+    {
+      roll: '95-99',
+      description: 'You lose your footing while attacking and fall head first.',
+      effect: 'You fall prone. Roll a DC 15 constitution save, on failure you take 2d6 damage and are knocked unconscious for 1 minute or until you receive damage from any source. On success take half damage and you remain conscious.'
+    },
+    {
+      roll: '100',
+      description: 'You lose your footing while attacking and slam your head into the ground.',
+      effect: 'You fall prone, take 3d6 damage, and become unconscious for 1 minute or until you receive damage from any source.'
+    }
+  ]
+}
+
+export { lodging, crafting, inn, meals, spellAttackFumble, weaponAttackFumble }

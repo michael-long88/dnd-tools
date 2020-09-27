@@ -14,6 +14,12 @@
         <li class="nav-item">
           <span :class="['nav-link', { 'active' : selectedReference === 'meals'}]" @click="updateSelectedReference('meals')">Meals</span>
         </li>
+        <li class="nav-item">
+          <span :class="['nav-link', { 'active' : selectedReference === 'weaponFumble'}]" @click="updateSelectedReference('weaponFumble')">Weapon Fumbles</span>
+        </li>
+        <li class="nav-item">
+          <span :class="['nav-link', { 'active' : selectedReference === 'spellFumble'}]" @click="updateSelectedReference('spellFumble')">Spell Fumbles</span>
+        </li>
       </ul>
     </div>
     <div class="container resource-div" v-if="selectedReference === 'lodging'">
@@ -28,16 +34,24 @@
     <div class="container resource-div" v-if="selectedReference === 'meals'">
       <ExpensesTable :resource="mealResource" />
     </div>
+    <div class="container resource-div" v-if="selectedReference === 'weaponFumble'">
+      <FumbleTable :resource="weaponFumbleResource" />
+    </div>
+    <div class="container resource-div" v-if="selectedReference === 'spellFumble'">
+      <FumbleTable :resource="spellFumbleResource" />
+    </div>
   </div>
 </template>
 
 <script>
 import ExpensesTable from '../components/ExpensesTable'
-import { lodging, crafting, inn, meals } from '../references/referenceTableData'
+import FumbleTable from '../components/FumbleTable'
+import { lodging, crafting, inn, meals, spellAttackFumble, weaponAttackFumble } from '../references/referenceTableData'
 export default {
   name: 'ReferencesPage',
   components: {
-    ExpensesTable
+    ExpensesTable,
+    FumbleTable
   },
   data () {
     return {
@@ -56,6 +70,12 @@ export default {
     },
     mealResource() {
       return meals
+    },
+    weaponFumbleResource() {
+      return weaponAttackFumble
+    },
+    spellFumbleResource() {
+      return spellAttackFumble
     }
   },
   methods: {
