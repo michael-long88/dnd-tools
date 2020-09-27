@@ -66,7 +66,7 @@
         <div v-if="calculationType === 'Single Day'">
           <div class="form-group row">
             <div class="col-md-2 offset-md-4">
-              <label class="col-form-label" for="dc">1d20 Roll:</label>
+              <label class="col-form-label" for="roll1d20">1d20 Roll:</label>
             </div>
             <div class="col-md-2">
               <input
@@ -79,7 +79,7 @@
           </div>
           <div class="form-group row">
             <div class="col-md-2 offset-md-4">
-              <label class="col-form-label" for="dc">Chance of Success:</label>
+              <label class="col-form-label" for="chanceOfSuccess">Chance of Success:</label>
             </div>
             <div class="col-md-2">
               <input
