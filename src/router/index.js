@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Calculator from '../components/Calculator'
 import Converter from '../components/Converter'
 import References from '../pages/References'
+import API from '../pages/API'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/references',
     name: 'References',
     component: References
+  },
+  {
+    path: '/api',
+    name: 'API',
+    component: API
   }
 ]
 
