@@ -19,7 +19,7 @@
             :key="filterOption"
             :value="filterOption"
           >
-            {{ filterOption }}
+            {{ filterOption === 0 ? 'Cantrip' : filterOption }}
           </option>
         </select>
         <select
