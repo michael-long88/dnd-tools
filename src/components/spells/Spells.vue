@@ -46,7 +46,12 @@
         </button>
       </div>
     </div>
-    <div id="accordian">
+    <div class="card" v-if="apiSearched && !spellResults.length">
+      <div class="card-body">
+        <h2>No results could be found for the selected choices</h2>
+      </div>
+    </div>
+    <div id="accordian" v-else>
       <div
         class="card"
         v-for="(spell, index) in spellResults"
@@ -148,6 +153,7 @@ export default {
   name: 'Spells',
   data () {
     return {
+      apiSearched: false,
       apiOptions: {
         level: [],
         school: []
@@ -195,6 +201,7 @@ export default {
     async searchAPI () {
       const isEmpty = !Object.values(this.apiOptions).some(x => (x !== null && x !== ''))
       if (!isEmpty) {
+        this.apiSearched = true
         let levelList = ''
         let schoolList = ''
         if (this.apiOptions.level.length) {
