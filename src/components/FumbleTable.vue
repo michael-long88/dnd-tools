@@ -19,10 +19,10 @@
             {{ item.roll }}
           </td>
           <td>
-            {{ item.description }}
+            <span v-html="item.description" />
           </td>
           <td>
-            {{ item.effect }}
+            <span v-html="item.effect" />
           </td>
         </tr>
       </tbody>
