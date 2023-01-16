@@ -1,5 +1,5 @@
 # dnd-tavern-calculator
-This project is currently hosted at https://dnd-tavern-calculator.herokuapp.com/
+This project is currently hosted at https://dnd-tavern-tools.com/
 
 This project orginated from wanting to track earnings from a tavern founded in a D&D 5e game and has since grown to add even more features.
 
