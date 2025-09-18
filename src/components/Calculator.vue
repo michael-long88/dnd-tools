@@ -169,7 +169,7 @@
 </template>
 
 <script>
-import Tooltip from './Tooltip'
+import Tooltip from './Tooltip.vue'
 import instructions from '@/instructions'
 export default {
   name: 'Calculator',

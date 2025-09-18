@@ -1,15 +1,10 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { defineStore } from 'pinia';
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
-  state: {
+export const useMainStore = defineStore('main', {
+  state: () => ({
     baseAPIUrl: 'https://www.dnd5eapi.co/api/'
-  },
+  }),
   getters: {
-    getBaseURL: (state) => {
-      return state.baseAPIUrl
-    },
+    getBaseURL: (state) => state.baseAPIUrl
   }
-})
+});

@@ -10,6 +10,7 @@
 
 <script>
 import $ from 'jquery'
+import { onMounted } from 'vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 
@@ -28,10 +29,13 @@ export default {
       default: 'left'
     }
   },
-  mounted() {
-    $(document).ready(function() {
-      $('[data-toggle="tooltip"]').tooltip()
-    })
+  setup() {
+    onMounted(() => {
+      $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    });
+    return {};
   }
 }
 </script>

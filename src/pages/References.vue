@@ -44,8 +44,8 @@
 </template>
 
 <script>
-import ExpensesTable from '../components/ExpensesTable'
-import FumbleTable from '../components/FumbleTable'
+import ExpensesTable from '../components/ExpensesTable.vue'
+import FumbleTable from '../components/FumbleTable.vue'
 import { lodging, crafting, inn, meals, spellAttackFumble, weaponAttackFumble } from '../references/referenceTableData'
 export default {
   name: 'ReferencesPage',

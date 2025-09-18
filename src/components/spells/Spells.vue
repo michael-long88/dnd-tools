@@ -147,8 +147,9 @@
 </template>
 <script>
 import { spells } from '../../references/referenceAPIData'
-import { mapGetters } from 'vuex'
-import axios from 'axios'
+import { useMainStore } from '../../store';
+import { storeToRefs } from 'pinia';
+import axios from 'axios';
 export default {
   name: 'Spells',
   data () {
@@ -190,15 +191,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'getBaseURL'
-    ]),
     spellOptions () {
       return spells
     }
   },
   methods: {
     async searchAPI () {
+      const mainStore = useMainStore();
+      const { getBaseURL } = storeToRefs(mainStore);
       const isEmpty = !Object.values(this.apiOptions).some(x => (x !== null && x !== ''))
       if (!isEmpty) {
         this.apiSearched = true
@@ -212,13 +212,13 @@ export default {
           schoolList = this.apiOptions.school.join(',')
           schoolList = `school=${schoolList}`
         }
-        let spellURL = `${this.getBaseURL}spells?${levelList}${schoolList}`
+        let spellURL = `${getBaseURL.value}spells?${levelList}${schoolList}`
         let availableSpells = []
         let apiSpellResults = []
         if (this.selectedClasses.length) {
           for (let className of this.selectedClasses) {
             className = className.toLowerCase()
-            let classURL = `${this.getBaseURL}/classes/${className}/spells`
+            let classURL = `${getBaseURL.value}classes/${className}/spells`
             let classResponse = await axios.get(classURL)
             availableSpells.push(...classResponse.data.results.map(spell => spell.index))
           }
@@ -233,7 +233,9 @@ export default {
       }
     },
     async getSpell (spellIndex) {
-      let spellURL = `${this.getBaseURL}spells/${spellIndex}`
+      const mainStore = useMainStore();
+      const { getBaseURL } = storeToRefs(mainStore);
+      let spellURL = `${getBaseURL.value}spells/${spellIndex}`
       let spell = await axios.get(spellURL)
       this.selectedSpell = spell.data
     }

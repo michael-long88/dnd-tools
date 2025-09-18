@@ -115,26 +115,30 @@
       </div>
     </div>
     <table class="table table-bordered rates-table">
-      <tr>
-        <th scope="col">
-          Coin
-        </th>
-        <th
-          v-for="(coinType, index) in coinTypes"
-          :key="index"
-          scope="col"
-        >
-          {{ coinType }}
-        </th>
-      </tr>
-      <tr v-for="(coinType, index) in coinTypes" :key="index">
-        <td scope="row">
-          {{ exchangeRates[coinType][coinType]['name'] }} ({{ coinType }})
-        </td>
-        <td v-for="(coinValues, coin, coinIndex) in exchangeRates[coinType]" :key="coinIndex">
-          {{ coinValues['label'] }}
-        </td>
-      </tr>
+      <thead>
+        <tr>
+          <th scope="col">
+            Coin
+          </th>
+          <th
+            v-for="(coinType, index) in coinTypes"
+            :key="index"
+            scope="col"
+          >
+            {{ coinType }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(coinType, index) in coinTypes" :key="index">
+          <td scope="row">
+            {{ exchangeRates[coinType][coinType]['name'] }} ({{ coinType }})
+          </td>
+          <td v-for="(coinValues, coin, coinIndex) in exchangeRates[coinType]" :key="coinIndex">
+            {{ coinValues['label'] }}
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>
@@ -162,14 +166,14 @@ export default {
   methods: {
     convertCurrency () {
       if (this.teamSize > 1 && this.teamSize < 100) {
-        this.singleResults = {}
+        this.teamResults = []
         if (this.noPlatinum) {
           this.teamResults = teamSplit(this.teamSize, {cp: this.copperAmount, sp: this.silverAmount, ep: this.electrumAmount, gp: this.goldAmount, pp: this.platinumAmount}, ['cp', 'sp', 'gp'])
         } else {
           this.teamResults = teamSplit(this.teamSize, {cp: this.copperAmount, sp: this.silverAmount, ep: this.electrumAmount, gp: this.goldAmount, pp: this.platinumAmount})
         }
       } else {
-        this.teamResults = []
+        this.singleResults = {}
         if (this.noPlatinum) {
           this.singleResults = optimalExchange({cp: this.copperAmount, sp: this.silverAmount, ep: this.electrumAmount, gp: this.goldAmount, pp: this.platinumAmount}, ['cp', 'sp', 'gp'])
         } else {
@@ -177,8 +181,6 @@ export default {
         }
       }
       this.aggregateResults()
-      console.log(this.singleResults)
-      console.log(this.teamResults)
     },
     toCoinStr (results) {
       let coinStr = ''
