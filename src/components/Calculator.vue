@@ -19,13 +19,13 @@
     <div class="container">
       <form @submit.prevent="calculateChanceOfSuccess">
         <div class="form-group row">
-          <div class="col-md-2 offset-md-4">
+          <div class="col-md-3 offset-md-3">
             <div>
               <Tooltip :tooltipText="'Cost of a normal ale in your tavern'" />&nbsp;
               <label class="col-form-label" for="regularAleCost">Regular Ale Cost:</label>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <input
               class="form-control"
               v-model.lazy.number="regularAleCost"
@@ -34,13 +34,13 @@
           </div>
         </div>
         <div class="form-group row">
-          <div class="col-md-2 offset-md-4">
+          <div class="col-md-3 offset-md-3">
             <div>
               <Tooltip :tooltipText="'Cost of a premium ale in your tavern'" />&nbsp;
               <label class="col-form-label" for="premiumAleCost">Premium Ale Cost:</label>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <input
               class="form-control"
               v-model.lazy.number="premiumAleCost"
@@ -49,13 +49,13 @@
           </div>
         </div>
         <div class="form-group row">
-          <div class="col-md-2 offset-md-4">
+          <div class="col-md-3 offset-md-3">
             <div>
               <Tooltip :tooltipText="'DC check to pass in order to sell a premium ale'" />&nbsp;
               <label class="col-form-label" for="dc">DC:</label>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <input
               class="form-control"
               v-model.lazy.number="dc"
@@ -65,10 +65,10 @@
         </div>
         <div v-if="calculationType === 'Single Day'">
           <div class="form-group row">
-            <div class="col-md-2 offset-md-4">
+            <div class="col-md-3 offset-md-3">
               <label class="col-form-label" for="roll1d20">1d20 Roll:</label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
               <input
                 class="form-control"
                 v-model="roll1d20"
@@ -78,10 +78,10 @@
             </div>
           </div>
           <div class="form-group row">
-            <div class="col-md-2 offset-md-4">
+            <div class="col-md-3 offset-md-3">
               <label class="col-form-label" for="chanceOfSuccess">Chance of Success:</label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
               <input
                 class="form-control"
                 v-model="chanceOfSuccess"
