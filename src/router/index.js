@@ -1,11 +1,8 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Calculator from '../components/Calculator'
-import Converter from '../components/Converter'
-import References from '../pages/References'
-import API from '../pages/API'
-
-Vue.use(VueRouter)
+import { createRouter, createWebHistory } from 'vue-router';
+import Calculator from '../components/Calculator.vue';
+import Converter from '../components/Converter.vue';
+import References from '../pages/References.vue';
+import API from '../pages/API.vue';
 
 const routes = [
   {
@@ -28,12 +25,11 @@ const routes = [
     name: 'API',
     component: API
   }
-]
+];
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
+const router = createRouter({
+  history: createWebHistory(),
   routes,
-})
+});
 
-export default router
+export default router;

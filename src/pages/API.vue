@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Spells from '../components/spells/Spells'
+import Spells from '../components/spells/Spells.vue'
 export default {
   name: 'API',
   components: {

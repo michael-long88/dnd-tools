@@ -3,11 +3,13 @@
     <h3>{{ tableTitle }}  <small><Tooltip v-if="descriptionExists" tooltipText="Click an item for a description" /></small></h3>
     <table class="table table-striped table-bordered">
       <thead>
-        <th>{{ itemColumnHeader }}</th>
-        <th v-if="gradeColumnHeader">
-          {{ gradeColumnHeader }}
-        </th>
-        <th>{{ priceColumnHeader }}</th>
+        <tr>
+          <th>{{ itemColumnHeader }}</th>
+          <th v-if="gradeColumnHeader">
+            {{ gradeColumnHeader }}
+          </th>
+          <th>{{ priceColumnHeader }}</th>
+        </tr>
       </thead>
       <tbody>
         <tr v-for="(item, index) in resourceItems" :key="index">
@@ -36,8 +38,8 @@
 </template>
 
 <script>
-import ExplanationModal from './explanationModal'
-import Tooltip from './Tooltip'
+import ExplanationModal from './explanationModal.vue'
+import Tooltip from './Tooltip.vue'
 export default {
   name: 'ExpensesTable',
   components: {
