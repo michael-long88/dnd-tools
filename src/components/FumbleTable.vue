@@ -3,15 +3,17 @@
     <h3>{{ tableTitle }}</h3>
     <table class="table table-striped table-bordered">
       <thead>
-        <th>
-          {{ rollColumnHeader }}
-        </th>
-        <th>
-          {{ descriptionColumnHeader }}
-        </th>
-        <th>
-          {{ effectColumnHeader }}
-        </th>
+        <tr>
+          <th>
+            {{ rollColumnHeader }}
+          </th>
+          <th>
+            {{ descriptionColumnHeader }}
+          </th>
+          <th>
+            {{ effectColumnHeader }}
+          </th>
+        </tr>
       </thead>
       <tbody>
         <tr v-for="(item, index) in resourceItems" :key="index">

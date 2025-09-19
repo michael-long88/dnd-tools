@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container spells-container">
     <div class="row">
       <div
         v-for="(filterObj, filterName) in spellOptions"
@@ -57,7 +57,7 @@
         v-for="(spell, index) in spellResults"
         :key="spell.index"
       >
-        <div class="card-header text-left" :id="`heading${index}`">
+        <div class="card-header text-start" :id="`heading${index}`">
           <h5 class="mb-0">
             <button
               :class="[{ 'collapsed': spell.name !== selectedSpell.name}, 'btn btn-link']"
@@ -78,7 +78,7 @@
           data-parent="#accordion"
         >
           <div class="card-body" v-if="selectedSpell">
-            <div class="row text-left">
+            <div class="row text-start">
               <div class="col-3">
                 <b>Level:</b> {{ selectedSpell.level === 0 ? 'Cantrip' : selectedSpell.level }}
               </div>
@@ -95,7 +95,7 @@
                 <b>Components:</b> None
               </div>
             </div>
-            <div class="row text-left">
+            <div class="row text-start">
               <div class="col-3">
                 <b>Duration:</b> {{ selectedSpell.duration }}
               </div>
@@ -115,7 +115,7 @@
                 <b>Damage/Effect:</b> None
               </div>
             </div>
-            <div class="row text-left">
+            <div class="row text-start">
               <div class="col-3" v-if="selectedSpell.ritual">
                 <b>Ritual:</b> Yes
               </div>
@@ -130,7 +130,7 @@
               </div>
             </div>
             <hr />
-            <div class="row text-left">
+            <div class="row text-start">
               <p v-for="(para, subIndex) in selectedSpell.desc" :key="`para${subIndex}`">
                 {{ para }}
               </p>
@@ -147,8 +147,9 @@
 </template>
 <script>
 import { spells } from '../../references/referenceAPIData'
-import { mapGetters } from 'vuex'
-import axios from 'axios'
+import { useMainStore } from '../../store';
+import { storeToRefs } from 'pinia';
+import axios from 'axios';
 export default {
   name: 'Spells',
   data () {
@@ -190,15 +191,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'getBaseURL'
-    ]),
     spellOptions () {
       return spells
     }
   },
   methods: {
     async searchAPI () {
+      const mainStore = useMainStore();
+      const { getBaseURL } = storeToRefs(mainStore);
       const isEmpty = !Object.values(this.apiOptions).some(x => (x !== null && x !== ''))
       if (!isEmpty) {
         this.apiSearched = true
@@ -212,13 +212,13 @@ export default {
           schoolList = this.apiOptions.school.join(',')
           schoolList = `school=${schoolList}`
         }
-        let spellURL = `${this.getBaseURL}spells?${levelList}${schoolList}`
+        let spellURL = `${getBaseURL.value}spells?${levelList}${schoolList}`
         let availableSpells = []
         let apiSpellResults = []
         if (this.selectedClasses.length) {
           for (let className of this.selectedClasses) {
             className = className.toLowerCase()
-            let classURL = `${this.getBaseURL}/classes/${className}/spells`
+            let classURL = `${getBaseURL.value}classes/${className}/spells`
             let classResponse = await axios.get(classURL)
             availableSpells.push(...classResponse.data.results.map(spell => spell.index))
           }
@@ -233,7 +233,9 @@ export default {
       }
     },
     async getSpell (spellIndex) {
-      let spellURL = `${this.getBaseURL}spells/${spellIndex}`
+      const mainStore = useMainStore();
+      const { getBaseURL } = storeToRefs(mainStore);
+      let spellURL = `${getBaseURL.value}spells/${spellIndex}`
       let spell = await axios.get(spellURL)
       this.selectedSpell = spell.data
     }

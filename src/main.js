@@ -1,21 +1,18 @@
-import Vue from 'vue'
-import router from './router'
-import store from './store'
-import App from './App.vue'
-import './styles/main.scss'
+import { createApp } from 'vue';
+import router from './router';
+import { createPinia } from 'pinia';
+import App from './App.vue';
+import './styles/main.scss';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
+import 'bootstrap';
 
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+// Add icons to the library
+library.add(faQuestionCircle);
 
-// need to have this here for jQuery to work
-import 'bootstrap'
-
-
-Vue.component('font-awesome-icon', FontAwesomeIcon)
-
-Vue.config.productionTip = false
-
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+const app = createApp(App);
+app.use(router);
+app.use(createPinia());
+app.component('font-awesome-icon', FontAwesomeIcon);
+app.mount('#app');

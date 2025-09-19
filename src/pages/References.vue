@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container">
+    <div class="container reference-container">
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <span :class="['nav-link', { 'active' : selectedReference === 'lodging'}]" @click="updateSelectedReference('lodging')">Lodging</span>
@@ -44,8 +44,8 @@
 </template>
 
 <script>
-import ExpensesTable from '../components/ExpensesTable'
-import FumbleTable from '../components/FumbleTable'
+import ExpensesTable from '../components/ExpensesTable.vue'
+import FumbleTable from '../components/FumbleTable.vue'
 import { lodging, crafting, inn, meals, spellAttackFumble, weaponAttackFumble } from '../references/referenceTableData'
 export default {
   name: 'ReferencesPage',
