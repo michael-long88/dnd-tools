@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container">
+    <div class="container reference-container">
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <span :class="['nav-link', { 'active' : selectedReference === 'lodging'}]" @click="updateSelectedReference('lodging')">Lodging</span>

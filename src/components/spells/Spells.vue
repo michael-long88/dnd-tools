@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container spells-container">
     <div class="row">
       <div
         v-for="(filterObj, filterName) in spellOptions"
@@ -57,7 +57,7 @@
         v-for="(spell, index) in spellResults"
         :key="spell.index"
       >
-        <div class="card-header text-left" :id="`heading${index}`">
+        <div class="card-header text-start" :id="`heading${index}`">
           <h5 class="mb-0">
             <button
               :class="[{ 'collapsed': spell.name !== selectedSpell.name}, 'btn btn-link']"
@@ -78,7 +78,7 @@
           data-parent="#accordion"
         >
           <div class="card-body" v-if="selectedSpell">
-            <div class="row text-left">
+            <div class="row text-start">
               <div class="col-3">
                 <b>Level:</b> {{ selectedSpell.level === 0 ? 'Cantrip' : selectedSpell.level }}
               </div>
@@ -95,7 +95,7 @@
                 <b>Components:</b> None
               </div>
             </div>
-            <div class="row text-left">
+            <div class="row text-start">
               <div class="col-3">
                 <b>Duration:</b> {{ selectedSpell.duration }}
               </div>
@@ -115,7 +115,7 @@
                 <b>Damage/Effect:</b> None
               </div>
             </div>
-            <div class="row text-left">
+            <div class="row text-start">
               <div class="col-3" v-if="selectedSpell.ritual">
                 <b>Ritual:</b> Yes
               </div>
@@ -130,7 +130,7 @@
               </div>
             </div>
             <hr />
-            <div class="row text-left">
+            <div class="row text-start">
               <p v-for="(para, subIndex) in selectedSpell.desc" :key="`para${subIndex}`">
                 {{ para }}
               </p>

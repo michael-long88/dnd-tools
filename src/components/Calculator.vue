@@ -5,7 +5,7 @@
         {{ calculationType }}
       </button>
       <h4>Instructions:</h4>
-      <div class="text-left">
+      <div class="text-start">
         <ol>
           <li
             v-for="(step, index) in instructions[calculationType]"
@@ -18,8 +18,8 @@
     </div>
     <div class="container">
       <form @submit.prevent="calculateChanceOfSuccess">
-        <div class="form-group row">
-          <div class="col-md-3 offset-md-3">
+        <div class="row mb-3 justify-content-md-center">
+          <div class="col-md-3">
             <div>
               <Tooltip :tooltipText="'Cost of a normal ale in your tavern'" />&nbsp;
               <label class="col-form-label" for="regularAleCost">Regular Ale Cost:</label>
@@ -33,8 +33,8 @@
             />
           </div>
         </div>
-        <div class="form-group row">
-          <div class="col-md-3 offset-md-3">
+        <div class="row mb-3 justify-content-md-center">
+          <div class="col-md-3">
             <div>
               <Tooltip :tooltipText="'Cost of a premium ale in your tavern'" />&nbsp;
               <label class="col-form-label" for="premiumAleCost">Premium Ale Cost:</label>
@@ -48,8 +48,8 @@
             />
           </div>
         </div>
-        <div class="form-group row">
-          <div class="col-md-3 offset-md-3">
+        <div class="row mb-3 justify-content-md-center">
+          <div class="col-md-3">
             <div>
               <Tooltip :tooltipText="'DC check to pass in order to sell a premium ale'" />&nbsp;
               <label class="col-form-label" for="dc">DC:</label>
@@ -64,8 +64,8 @@
           </div>
         </div>
         <div v-if="calculationType === 'Single Day'">
-          <div class="form-group row">
-            <div class="col-md-3 offset-md-3">
+          <div class="row mb-3 justify-content-md-center">
+            <div class="col-md-3">
               <label class="col-form-label" for="roll1d20">1d20 Roll:</label>
             </div>
             <div class="col-md-3">
@@ -77,8 +77,8 @@
               />
             </div>
           </div>
-          <div class="form-group row">
-            <div class="col-md-3 offset-md-3">
+          <div class="row mb-3 justify-content-md-center">
+            <div class="col-md-3">
               <label class="col-form-label" for="chanceOfSuccess">Chance of Success:</label>
             </div>
             <div class="col-md-3">
@@ -90,9 +90,13 @@
               />
             </div>
           </div>
-          <button class="btn btn-primary" type="submit">
-            Calculate Chance of Success
-          </button>
+          <div class="row mb-3 justify-content-md-center">
+            <div class="col-md-6">
+              <button class="btn btn-primary" type="submit">
+                Calculate Chance of Success
+              </button>
+            </div>
+          </div>
         </div>
       </form>
     </div>
@@ -130,7 +134,7 @@
         </tbody>
       </table>
       <div v-if="calculationType === 'Multiple Days'">
-        <div class="form-group row">
+        <div class="row mb-3">
           <div class="col-md-2 offset-md-4">
             <label for="numDays">Number of days (between 1 and 30):</label>
           </div>

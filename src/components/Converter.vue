@@ -1,10 +1,10 @@
 <template>
   <div class="container converter-div">
     <form @submit.prevent="convertCurrency">
-      <div class="form-group row">
-        <div class="col-md-2 offset-md-3">
+      <div class="row mb-3 justify-content-md-center">
+        <div class="col-md-2">
           <div>
-            <label class="col-form-label" for="regularAleCost">Copper:</label>
+            <label class="col-form-label" for="copper">Copper:</label>
           </div>
         </div>
         <div class="col-md-4">
@@ -16,8 +16,8 @@
           />
         </div>
       </div>
-      <div class="form-group row">
-        <div class="col-md-2 offset-md-3">
+      <div class="row mb-3 justify-content-md-center">
+        <div class="col-md-2">
           <div>
             <label class="col-form-label" for="silver">Silver:</label>
           </div>
@@ -31,8 +31,8 @@
           />
         </div>
       </div>
-      <div class="form-group row">
-        <div class="col-md-2 offset-md-3">
+      <div class="row mb-3  justify-content-md-center">
+        <div class="col-md-2">
           <div>
             <label class="col-form-label" for="electrum">Electrum:</label>
           </div>
@@ -46,8 +46,8 @@
           />
         </div>
       </div>
-      <div class="form-group row">
-        <div class="col-md-2 offset-md-3">
+      <div class="row mb-3 justify-content-md-center">
+        <div class="col-md-2">
           <div>
             <label class="col-form-label" for="gold">Gold:</label>
           </div>
@@ -61,8 +61,8 @@
           />
         </div>
       </div>
-      <div class="form-group row">
-        <div class="col-md-2 offset-md-3">
+      <div class="row mb-3 justify-content-md-center">
+        <div class="col-md-2">
           <div>
             <label class="col-form-label" for="platinum">Platinum:</label>
           </div>
@@ -76,8 +76,8 @@
           />
         </div>
       </div>
-      <div class="form-group row">
-        <div class="col-md-2 offset-md-3">
+      <div class="row mb-3 justify-content-md-center">
+        <div class="col-md-2">
           <div>
             <label class="col-form-label" for="teamSize">Team Size:</label>
           </div>
@@ -93,25 +93,33 @@
           />
         </div>
       </div>
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value=""
-          v-model="noPlatinum"
-          id="noPlatinum"
-        />
-        <label class="form-check-label" for="noPlatinum">
-          Exchange only for copper, silver, and gold
-        </label>
+      <div class="row mb-3 justify-content-md-center">
+        <div class="col-md-6">
+          <div class="form-check justify-content-md-center">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              v-model="noPlatinum"
+              id="noPlatinum"
+            />
+            <label class="form-check-label" for="noPlatinum">
+              Exchange only for copper, silver, and gold
+            </label>
+          </div>
+        </div>
       </div>
-      <button class="btn btn-primary converter-submit" type="submit">
-        Convert Currency
-      </button>
+      <div class="row mb-3 justify-content-md-center">
+        <div class="col-md-6">
+          <button class="btn btn-primary converter-submit" type="submit">
+            Convert Currency
+          </button>
+        </div>
+      </div>
     </form>
     <div v-if="concatenatedResults" class="row">
       <div class="offset-md-4 col-md-4 results-holder">
-        <span v-html="concatenatedResults" class="text-left"></span>
+        <span v-html="concatenatedResults" class="text-start"></span>
       </div>
     </div>
     <table class="table table-bordered rates-table">
